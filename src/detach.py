@@ -1,9 +1,9 @@
-import usb.core
-import usb.util
 import os
 import sys
 
 from dotenv import load_dotenv
+import usb.core
+import usb.util
 
 
 def detach_kernel_driver():
