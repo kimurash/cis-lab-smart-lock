@@ -45,7 +45,7 @@ class LockController:
     def get_device_id(self):
         api_header = self.make_api_header()
 
-        dev_list_url = f'{self.host_domain}/v1.0/devices'
+        dev_list_url = f'{self.host_domain}/v1.1/devices'
         response = (
             requests.get(
                 url=dev_list_url,
@@ -74,7 +74,7 @@ class LockController:
 
     def get_lock_status(self):
         api_header = self.make_api_header()
-        dev_status_url = f'{self.host_domain}/devices/v1.1/{self.device_id}/status'
+        dev_status_url = f'{self.host_domain}/v1.1/devices/{self.device_id}/status'
 
         response = (
             requests.get(
@@ -89,7 +89,7 @@ class LockController:
 
     def send_ctrl_cmd(self, cmd: str):
         api_header = self.make_api_header()
-        dev_ctrl_url = f'{self.host_domain}/devices/v1.1/{self.device_id}/commands'
+        dev_ctrl_url = f'{self.host_domain}/v1.1/devices/{self.device_id}/commands'
         
         response = (
             requests.post(
