@@ -28,7 +28,7 @@ class LockController:
         string_to_sign = '{}{}{}'.format(self.token, t, nonce)
 
         string_to_sign = bytes(string_to_sign, 'utf-8')
-        secret = bytes(secret, 'utf-8')
+        secret = bytes(self.secret, 'utf-8')
 
         sign = base64.b64encode(hmac.new(secret, msg=string_to_sign, digestmod=hashlib.sha256).digest())
 

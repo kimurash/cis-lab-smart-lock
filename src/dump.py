@@ -19,7 +19,8 @@ def on_release(tag: nfc.tag.Tag) -> None:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
 
-    with nfc.ContactlessFrontend(f"usb:003:006") as clf:
+    # lsusbコマンドでBus IDとDevice IDを確認する
+    with nfc.ContactlessFrontend(f"usb:003:049") as clf:
         clf.connect(
             rdwr={
                 "on-connect": on_connect,

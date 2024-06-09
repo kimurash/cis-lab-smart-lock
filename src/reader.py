@@ -18,7 +18,7 @@ lock_ctrler = LockController()
 class FeliCaReader:
     # lsusbコマンドで調べる
     BUS_NO    = 3
-    DEVICE_NO = 6
+    DEVICE_NO = 49
 
     def __init__(self) -> None:
         load_dotenv()
