@@ -1,1 +1,1 @@
-# kit-lab-smart-lock
+# cis-lab-smart-lock
