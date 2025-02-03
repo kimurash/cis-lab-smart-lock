@@ -13,8 +13,6 @@ from auth import check_student_id
 from lock import LockController
 
 
-lock_ctrler = LockController()
-
 class FeliCaReader:
     # lsusbコマンドで調べる
     BUS_NO    = 3
@@ -30,6 +28,8 @@ class FeliCaReader:
         self.SERVICE_ATTR = int(os.getenv('SERVICE_ATTR'), 16)
         # Block
         self.BLOCK_NO = int(os.getenv('BLOCK_NO'))
+
+        self.lock_ctrler = LockController()
 
     def read(self):
         path = f'usb:{self.BUS_NO:03}:{self.DEVICE_NO:03}'
@@ -58,7 +58,7 @@ class FeliCaReader:
                 # 研究室の学生であった場合
                 if check_student_id(student_id):
                     # ロックの状態を変更する
-                    lock_ctrler.switch_lock_status()
+                    self.lock_ctrler.switch_lock_status()
 
         # Trueを返しておくとタグが存在しなくなるまで待機される
         return True
