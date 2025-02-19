@@ -7,6 +7,7 @@ requires-python = ">=3.10"
 dependencies = [
     "nfcpy>=1.0.4",
     "python-dotenv>=1.0.1",
+    "pyusb>=1.3.1",
     "requests>=2.32.3",
 ]
 
