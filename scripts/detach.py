@@ -7,10 +7,10 @@ import usb.util
 
 
 def detach_kernel_driver():
-    vendor_id  = int(os.getenv("VENDOR_ID"), 16)
-    product_id = int(os.getenv("PRODUCT_ID"), 16)
+    VENDOR_ID  = int(os.getenv("PASORI_VENDOR_ID"), 16)
+    PRODUCT_ID = int(os.getenv("PASORI_PRODUCT_ID"), 16)
 
-    device = usb.core.find(idVendor=vendor_id, idProduct=product_id)
+    device = usb.core.find(idVendor=VENDOR_ID, idProduct=PRODUCT_ID)
     if device is None:
         sys.exit("device not found")
 
@@ -25,4 +25,3 @@ def detach_kernel_driver():
 if __name__ == "__main__":
     load_dotenv()
     detach_kernel_driver()
-
