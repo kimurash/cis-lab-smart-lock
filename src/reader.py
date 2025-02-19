@@ -14,12 +14,14 @@ from lock import LockController
 
 
 class FeliCaReader:
-    # lsusbコマンドで調べる
-    BUS_NO    = 3
-    DEVICE_NO = 49
 
     def __init__(self) -> None:
         load_dotenv()
+
+        # PaSoRi
+        # lsusbコマンドで調べる
+        self.PASORI_BUS_NO    = int(os.getenv('PASORI_BUS_NO'))
+        self.PASORI_DEVICE_NO = int(os.getenv('PASORI_DEVICE_NO'))
 
         # System
         self.SYSTEM_CODE = int(os.getenv('SYSTEM_CODE'), 16)
@@ -32,7 +34,7 @@ class FeliCaReader:
         self.lock_ctrler = LockController()
 
     def read(self):
-        path = f'usb:{self.BUS_NO:03}:{self.DEVICE_NO:03}'
+        path = f'usb:{self.PASORI_BUS_NO:03}:{self.PASORI_DEVICE_NO:03}'
         with nfc.ContactlessFrontend(path) as clf:
             clf.connect(
                 rdwr={
