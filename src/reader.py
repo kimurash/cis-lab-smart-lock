@@ -11,6 +11,7 @@ from nfc.tag.tt3_sony import FelicaStandard
 
 from auth import check_student_id
 from lock import LockController
+from logger import get_logger
 
 
 class FeliCaReader:
@@ -32,6 +33,7 @@ class FeliCaReader:
         self.BLOCK_NO = int(os.getenv('BLOCK_NO'))
 
         self.lock_ctrler = LockController()
+        self.logger = get_logger()
 
     def read(self):
         path = f'usb:{self.PASORI_BUS_NO:03}:{self.PASORI_DEVICE_NO:03}'
@@ -44,7 +46,7 @@ class FeliCaReader:
             )
 
     def on_connect(self, tag: Tag) -> bool:
-        print('connected')
+        self.logger.info('connected')
 
         #　FeliCaのカードである
         if isinstance(tag, FelicaStandard):
@@ -55,7 +57,7 @@ class FeliCaReader:
 
                 # 学生番号を取得する
                 student_id = self.get_student_id(tag)
-                # print(student_id)
+                self.logger.info(student_id)
 
                 # 研究室の学生であった場合
                 if check_student_id(student_id):
@@ -87,7 +89,7 @@ class FeliCaReader:
         return data_block
     
     def on_release(self, tag: Tag) -> None:
-        print('released')
+        self.logger.info('released')
 
 
 if __name__ == '__main__':
