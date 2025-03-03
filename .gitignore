@@ -8,5 +8,6 @@ __pycache__/
 *.txt
 *.TAG
 *.log
+*.out
 
 notebook/
