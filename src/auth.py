@@ -20,8 +20,4 @@ def check_student_id(student_id: str) -> bool:
         '23821004',
     ]
 
-    if student_id in member_id_list:
-        return True
-
-    return False
-
+    return student_id in member_id_list
